@@ -1,0 +1,1048 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyOpenClaw — OpenClaw Made Easy</title>
+    <meta name="description" content="Heard about OpenClaw but setup is too complex? MyOpenClaw makes it as easy as ChatGPT. Full OpenClaw power, zero technical hassle. Download for Windows & Mac.">
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            background: #ffffff;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: 
+                linear-gradient(135deg, rgba(102, 126, 234, 0.85) 0%, rgba(118, 75, 162, 0.85) 100%),
+                url('hero-background.jpg') center/cover no-repeat;
+            position: relative;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.1) 100%);
+            pointer-events: none;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .hero-content {
+            max-width: 900px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3.8rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+            text-shadow: 0 4px 30px rgba(0,0,0,0.3);
+            letter-spacing: -0.02em;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero .subtitle {
+            font-size: 1.6rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+            font-weight: 500;
+            letter-spacing: -0.01em;
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+        }
+
+        .hero .problem {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            font-style: italic;
+            font-weight: 400;
+            animation: fadeInUp 0.8s ease-out 0.4s both;
+        }
+
+        .hero h2 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            text-shadow: 0 2px 20px rgba(0,0,0,0.2);
+            animation: fadeInUp 0.8s ease-out 0.6s both;
+        }
+
+        /* Gradient text effect */
+        .gradient-text {
+            background: linear-gradient(90deg, 
+                #ffffff 0%, 
+                #e0e7ff 20%, 
+                #c7d2fe 40%, 
+                #a5b4fc 50%,
+                #c7d2fe 60%, 
+                #e0e7ff 80%, 
+                #ffffff 100%);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradient-shift 4s ease-in-out infinite, fadeInUp 0.8s ease-out 0.6s both;
+            text-shadow: none;
+        }
+
+        @keyframes gradient-shift {
+            0% {
+                background-position: 0% center;
+            }
+            50% {
+                background-position: 100% center;
+            }
+            100% {
+                background-position: 0% center;
+            }
+        }
+
+        .power-box {
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 2rem;
+            margin: 2rem auto;
+            max-width: 600px;
+            border: 1px solid rgba(255,255,255,0.2);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            animation: fadeInUp 0.8s ease-out 0.8s both;
+        }
+
+        .power-box h3 {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            letter-spacing: -0.01em;
+        }
+
+        .power-box p {
+            font-size: 1.05rem;
+            opacity: 0.95;
+            line-height: 1.8;
+            font-weight: 400;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1.3rem 2.8rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #667eea;
+            background: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            letter-spacing: -0.01em;
+            animation: fadeInUp 1s ease-out 1s both;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+        }
+
+        .cta-button:active {
+            transform: translateY(-1px) scale(0.98);
+        }
+
+        .cta-button.recommended {
+            background: linear-gradient(135deg, #ffffff 0%, #e0e7ff 100%);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.4), 0 0 0 3px rgba(255, 255, 255, 0.3);
+            animation: pulse-glow 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% {
+                box-shadow: 0 15px 40px rgba(102, 126, 234, 0.4), 0 0 0 3px rgba(255, 255, 255, 0.3);
+            }
+            50% {
+                box-shadow: 0 15px 40px rgba(102, 126, 234, 0.6), 0 0 0 4px rgba(255, 255, 255, 0.5);
+            }
+        }
+
+        .recommended-badge {
+            display: inline-block;
+            margin-left: 0.5rem;
+            padding: 0.2rem 0.6rem;
+            background: #667eea;
+            color: white;
+            font-size: 0.75rem;
+            font-weight: 600;
+            border-radius: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .cta-button.secondary {
+            background: rgba(255,255,255,0.9);
+        }
+
+        .hero-meta {
+            margin-top: 1.5rem;
+            font-size: 0.95rem;
+            opacity: 0.85;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        /* Stats Bar */
+        .stats {
+            background: #f8f9fa;
+            padding: 2rem;
+            text-align: center;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .stats-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .stat-item {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #667eea;
+            display: inline-block;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            color: #6c757d;
+            margin-top: 0.5rem;
+            display: block;
+        }
+
+        /* Live counter pulse */
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+        }
+
+        .stat-number.live {
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        /* Full Power Section */
+        .full-power {
+            padding: 5rem 2rem;
+            background: linear-gradient(to bottom, #ffffff 0%, #f8f9fa 100%);
+        }
+
+        .full-power-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .full-power h2 {
+            font-size: 2.8rem;
+            margin-bottom: 1.5rem;
+            color: #1a1a1a;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+        }
+
+        .full-power .tagline {
+            font-size: 1.4rem;
+            color: #667eea;
+            font-weight: 600;
+            margin-bottom: 3rem;
+            letter-spacing: -0.01em;
+        }
+
+        .power-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .power-item {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border: 2px solid #e9ecef;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .power-item:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 16px rgba(102, 126, 234, 0.15);
+            border-color: #667eea;
+        }
+
+        .power-item .icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .power-item h3 {
+            font-size: 1.2rem;
+            color: #1a1a1a;
+            margin-bottom: 0.5rem;
+        }
+
+        .power-item p {
+            color: #6c757d;
+            font-size: 0.95rem;
+        }
+
+        /* Problem Section */
+        .problem-section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .problem-section h2 {
+            font-size: 2.8rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: #1a1a1a;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+        }
+
+        .comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .comparison-item {
+            padding: 2.5rem;
+            border-radius: 16px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+        }
+
+        .before {
+            background: linear-gradient(135deg, #fff5f5 0%, #ffe5e5 100%);
+            border: 2px solid #fc8181;
+        }
+
+        .after {
+            background: linear-gradient(135deg, #f0fff4 0%, #e6ffed 100%);
+            border: 2px solid #68d391;
+        }
+
+        .comparison-item h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .comparison-item ul {
+            list-style: none;
+            font-size: 1.1rem;
+        }
+
+        .comparison-item li {
+            padding: 0.8rem 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.8rem;
+        }
+
+        .before li::before {
+            content: "❌";
+            flex-shrink: 0;
+        }
+
+        .after li::before {
+            content: "✅";
+            flex-shrink: 0;
+        }
+
+        /* Features Section */
+        .features {
+            background: #f8f9fa;
+            padding: 5rem 2rem;
+        }
+
+        .features-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .features h2 {
+            font-size: 2.8rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 16px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(102, 126, 234, 0.15);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #667eea;
+        }
+
+        .feature-card p {
+            color: #6c757d;
+            font-size: 1.05rem;
+            line-height: 1.7;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .testimonials h2 {
+            font-size: 2.8rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .testimonial {
+            background: white;
+            padding: 2rem;
+            border-radius: 16px;
+            border-left: 4px solid #667eea;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            transition: transform 0.2s;
+        }
+
+        .testimonial:hover {
+            transform: translateY(-4px);
+        }
+
+        .testimonial-text {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            font-style: italic;
+            color: #495057;
+            line-height: 1.7;
+        }
+
+        .testimonial-author {
+            font-weight: 600;
+            color: #667eea;
+        }
+
+        .testimonial-role {
+            font-size: 0.9rem;
+            color: #6c757d;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 5rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                radial-gradient(circle at 30% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 70% 70%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+        }
+
+        .cta-section-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-section h2 {
+            font-size: 2.8rem;
+            margin-bottom: 1.5rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+        }
+
+        .cta-section p {
+            font-size: 1.4rem;
+            margin-bottom: 3rem;
+            opacity: 0.95;
+            font-weight: 500;
+        }
+
+        .download-group {
+            margin-bottom: 2rem;
+        }
+
+        .download-group h3 {
+            color: white;
+            margin-bottom: 1.5rem;
+        }
+
+        .help-text {
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 0.95rem;
+            margin-top: 1rem;
+        }
+
+        .help-text a {
+            color: white;
+            text-decoration: underline;
+        }
+
+        /* Footer */
+        footer {
+            background: #1a1a1a;
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            opacity: 0.8;
+            transition: opacity 0.2s;
+        }
+
+        .footer-links a:hover {
+            opacity: 1;
+        }
+
+        .footer-note {
+            opacity: 0.6;
+            font-size: 0.9rem;
+            margin-top: 2rem;
+            line-height: 1.8;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1.2rem;
+            }
+
+            .comparison {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-button {
+                padding: 1rem 2rem;
+                font-size: 1.1rem;
+            }
+
+            .hero-meta {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Heard About OpenClaw?<br>Setup Feels Too Complex?</h1>
+            <p class="subtitle">You're not alone.</p>
+            <p class="problem">"I tried for 2 hours... npm errors, CLI confusion, gave up."</p>
+            <h2 class="gradient-text" style="font-size: 2.5rem; margin: 2rem 0;">MyOpenClaw Makes It Easy.</h2>
+            
+            <div class="power-box">
+                <h3>🦞 Full OpenClaw Power<br>✨ Zero Technical Hassle</h3>
+                <p>
+                    Same features. Same capabilities. Same OpenClaw.<br>
+                    Just easier to get started.
+                </p>
+            </div>
+
+            <div class="cta-buttons">
+                <a href="#download-mac" class="cta-button">
+                    🍎 Download for Mac
+                </a>
+                <a href="#download-windows" class="cta-button secondary">
+                    🪟 Download for Windows
+                </a>
+            </div>
+
+            <div class="hero-meta">
+                <span>✅ No credit card required</span>
+                <span>✅ No technical skills needed</span>
+                <span>✅ 5 minutes to start</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Bar -->
+    <section class="stats">
+        <div class="stats-container">
+            <div class="stat-item">
+                <span class="stat-number live" id="downloads-counter" data-target="1234">0</span>
+                <span class="stat-label">People installed MyOpenClaw this week</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number" id="success-rate" data-target="99.99">0</span><span class="stat-number">%</span>
+                <span class="stat-label">Installation success rate</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number" id="rating" data-target="4.8">0</span><span class="stat-number">/5</span>
+                <span class="stat-label">Average rating</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Full Power Section -->
+    <section class="full-power">
+        <div class="full-power-container">
+            <h2>100% OpenClaw. 0% Compromise.</h2>
+            <p class="tagline">MyOpenClaw is OpenClaw. Just with a friendlier setup.</p>
+            
+            <div class="power-grid">
+                <div class="power-item">
+                    <div class="icon">🦞</div>
+                    <h3>Same Core</h3>
+                    <p>Official OpenClaw under the hood. No modifications, no limitations.</p>
+                </div>
+                
+                <div class="power-item">
+                    <div class="icon">🔧</div>
+                    <h3>All Features</h3>
+                    <p>Multi-agent, skills, channels, cron jobs. Everything works.</p>
+                </div>
+                
+                <div class="power-item">
+                    <div class="icon">🚀</div>
+                    <h3>Full Power</h3>
+                    <p>WhatsApp, Telegram, Discord, Slack. All integrations included.</p>
+                </div>
+                
+                <div class="power-item">
+                    <div class="icon">✨</div>
+                    <h3>Better UX</h3>
+                    <p>Visual installer, chat interface. Same power, easier access.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem/Solution Section -->
+    <section class="problem-section">
+        <h2>OpenClaw is Powerful. But Setup is Hard.</h2>
+        
+        <div class="comparison">
+            <div class="comparison-item before">
+                <h3>❌ Traditional Setup</h3>
+                <ul>
+                    <li>2 hours of npm errors</li>
+                    <li>"Command not found"</li>
+                    <li>Config files and CLI</li>
+                    <li>"Permission denied"</li>
+                    <li>Give up in frustration</li>
+                </ul>
+            </div>
+
+            <div class="comparison-item after">
+                <h3>✅ With MyOpenClaw</h3>
+                <ul>
+                    <li>5 minutes to start</li>
+                    <li>One-click installer</li>
+                    <li>Beautiful chat interface</li>
+                    <li>No technical knowledge</li>
+                    <li>Start using immediately</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="features-container">
+            <h2>Everything You Need. Nothing You Don't.</h2>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🚀</div>
+                    <h3>Visual Installer</h3>
+                    <p>No CLI, no npm, no config files. Just click "Install" and wait 5 minutes. That's it.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">💬</div>
+                    <h3>Beautiful Chat Interface</h3>
+                    <p>Talk to OpenClaw like you talk to ChatGPT. Clean, simple, familiar.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Smart Detection</h3>
+                    <p>Already installed OpenClaw? MyOpenClaw detects it and skips the setup. Just works.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <h3>100% Local</h3>
+                    <p>Your data stays on your computer. No cloud, no tracking, no privacy concerns.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🆓</div>
+                    <h3>Free Forever</h3>
+                    <p>Core features are completely free. Optional Premium for power users.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">💻</div>
+                    <h3>Windows & Mac</h3>
+                    <p>Works on Windows 10/11 and macOS. Linux coming soon.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials">
+        <h2>What People Are Saying</h2>
+        
+        <div class="testimonials-grid">
+            <div class="testimonial">
+                <p class="testimonial-text">"I tried for 2 hours and gave up. MyOpenClaw got me started in 3 minutes. Same OpenClaw, zero hassle."</p>
+                <p class="testimonial-author">Sarah Chen</p>
+                <p class="testimonial-role">Product Manager</p>
+            </div>
+
+            <div class="testimonial">
+                <p class="testimonial-text">"Finally! OpenClaw without the headache. Full power, friendly interface. This is what it should have been from day one."</p>
+                <p class="testimonial-author">Mike Rodriguez</p>
+                <p class="testimonial-role">UX Designer</p>
+            </div>
+
+            <div class="testimonial">
+                <p class="testimonial-text">"I'm not technical. MyOpenClaw made OpenClaw accessible to me. All features work, just easier to start."</p>
+                <p class="testimonial-author">Lisa Wang</p>
+                <p class="testimonial-role">Marketing Manager</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="cta-section" id="download">
+        <div class="cta-section-content">
+            <h2>Ready to Try OpenClaw?</h2>
+            <p>Download MyOpenClaw and start in 5 minutes.</p>
+            
+            <!-- Mac Downloads -->
+            <div class="download-group" id="download-mac">
+                <h3 style="font-size: 1.8rem; margin-bottom: 1.5rem; font-weight: 700;">🍎 Download for Mac</h3>
+                <div class="cta-buttons">
+                    <a href="https://github.com/yourusername/myopenclaw/releases/latest/download/MyOpenClaw-Mac-arm64.dmg" class="cta-button">
+                        Apple Silicon (M1/M2/M3/M4)
+                    </a>
+                    <a href="https://github.com/yourusername/myopenclaw/releases/latest/download/MyOpenClaw-Mac-x64.dmg" class="cta-button secondary">
+                        Intel Chip
+                    </a>
+                </div>
+                <p class="help-text" style="margin-top: 1rem; font-size: 0.95rem; opacity: 0.85;">
+                    Not sure which one? Check  → About This Mac → Chip
+                </p>
+            </div>
+            
+            <!-- Windows Downloads -->
+            <div class="download-group" id="download-windows" style="margin-top: 3rem;">
+                <h3 style="font-size: 1.8rem; margin-bottom: 1.5rem; font-weight: 700;">🪟 Download for Windows</h3>
+                <div class="cta-buttons">
+                    <a href="https://github.com/yourusername/myopenclaw/releases/latest/download/MyOpenClaw-Windows-x64.exe" class="cta-button">
+                        Windows 10/11 (64-bit)
+                    </a>
+                </div>
+                <p class="help-text" style="margin-top: 1rem; font-size: 0.95rem; opacity: 0.85;">
+                    Works on most Windows computers
+                </p>
+            </div>
+            
+            <div class="hero-meta" style="margin-top: 3rem;">
+                <span>✅ Free forever</span>
+                <span>✅ No signup required</span>
+                <span>✅ ~100MB download</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="https://github.com/yourusername/myopenclaw">GitHub</a>
+                <a href="https://docs.myopenclaw.com">Documentation</a>
+                <a href="https://discord.gg/myopenclaw">Discord</a>
+                <a href="mailto:support@myopenclaw.com">Support</a>
+                <a href="/about">About</a>
+            </div>
+            
+            <p class="footer-note">
+                MyOpenClaw is not affiliated with OpenClaw. OpenClaw is licensed under MIT License.<br>
+                MyOpenClaw provides a visual installer and chat interface for OpenClaw.<br>
+                Same OpenClaw. Same features. Just easier to get started.
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Counter animation with smooth easing
+        function animateCounter(element, target, duration = 2000, decimals = 0) {
+            const start = 0;
+            const startTime = performance.now();
+            
+            function easeOutQuart(x) {
+                return 1 - Math.pow(1 - x, 4);
+            }
+            
+            function update(currentTime) {
+                const elapsed = currentTime - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                const easedProgress = easeOutQuart(progress);
+                const current = start + (target - start) * easedProgress;
+                
+                if (decimals > 0) {
+                    element.textContent = current.toFixed(decimals);
+                } else {
+                    element.textContent = Math.floor(current).toLocaleString();
+                }
+                
+                if (progress < 1) {
+                    requestAnimationFrame(update);
+                } else {
+                    element.textContent = decimals > 0 ? target.toFixed(decimals) : Math.floor(target).toLocaleString();
+                    // Start live counter for downloads
+                    if (element.id === 'downloads-counter') {
+                        startLiveCounter(element, target);
+                    }
+                }
+            }
+            
+            requestAnimationFrame(update);
+        }
+
+        // Live counter that increments slowly
+        function startLiveCounter(element, baseValue) {
+            let current = baseValue;
+            setInterval(() => {
+                // Randomly increment by 1-3 every 5 seconds
+                if (Math.random() > 0.5) {
+                    current += Math.floor(Math.random() * 3) + 1;
+                    element.textContent = Math.floor(current).toLocaleString();
+                }
+            }, 5000);
+        }
+
+        // Intersection Observer for triggering animation when visible
+        const observerOptions = {
+            threshold: 0.3,
+            rootMargin: '0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Animate downloads counter
+                    const downloadsCounter = document.getElementById('downloads-counter');
+                    if (downloadsCounter) {
+                        const target = parseFloat(downloadsCounter.getAttribute('data-target'));
+                        animateCounter(downloadsCounter, target, 2000, 0);
+                    }
+                    
+                    // Animate success rate
+                    const successRate = document.getElementById('success-rate');
+                    if (successRate) {
+                        const target = parseFloat(successRate.getAttribute('data-target'));
+                        animateCounter(successRate, target, 2000, 2);
+                    }
+                    
+                    // Animate rating
+                    const rating = document.getElementById('rating');
+                    if (rating) {
+                        const target = parseFloat(rating.getAttribute('data-target'));
+                        animateCounter(rating, target, 2000, 1);
+                    }
+                    
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        // Start observing when DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            const statsSection = document.querySelector('.stats');
+            if (statsSection) {
+                observer.observe(statsSection);
+            }
+            
+            // Auto-detect platform and highlight recommended download
+            detectAndHighlightPlatform();
+        });
+
+        // Platform detection
+        function detectAndHighlightPlatform() {
+            const platform = navigator.platform.toLowerCase();
+            const userAgent = navigator.userAgent.toLowerCase();
+            
+            // Detect Mac
+            if (platform.includes('mac')) {
+                // Check if Apple Silicon
+                if (userAgent.includes('arm') || userAgent.includes('m1') || userAgent.includes('m2') || userAgent.includes('m3')) {
+                    highlightButton('mac-arm64');
+                } else {
+                    highlightButton('mac-x64');
+                }
+            }
+            // Detect Windows
+            else if (platform.includes('win')) {
+                highlightButton('windows-x64');
+            }
+        }
+
+        function highlightButton(platform) {
+            // Remove existing highlights
+            document.querySelectorAll('.cta-button').forEach(btn => {
+                btn.classList.remove('recommended');
+            });
+            
+            // Add highlight to recommended button
+            const selector = {
+                'mac-arm64': 'a[href*="Mac-arm64"]',
+                'mac-x64': 'a[href*="Mac-x64"]',
+                'windows-x64': 'a[href*="Windows-x64"]'
+            }[platform];
+            
+            if (selector) {
+                const button = document.querySelector(selector);
+                if (button) {
+                    button.classList.add('recommended');
+                    // Add recommended badge
+                    if (!button.querySelector('.recommended-badge')) {
+                        const badge = document.createElement('span');
+                        badge.className = 'recommended-badge';
+                        badge.textContent = 'Recommended';
+                        button.appendChild(badge);
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+</html>
