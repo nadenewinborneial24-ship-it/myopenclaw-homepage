@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MyOpenClaw ‚Ä?OpenClaw Made Easy</title>
+    <title>MyOpenClaw - OpenClaw Made Easy</title>
     <meta name="description" content="Heard about OpenClaw but setup is too complex? MyOpenClaw makes it as easy as ChatGPT. Full OpenClaw power, zero technical hassle. Download for Windows & Mac.">
     
     <style>
@@ -171,10 +171,19 @@
             justify-content: center;
             flex-wrap: wrap;
             margin-top: 2rem;
+            align-items: stretch;
+        }
+
+        .download-group {
+            position: relative;
+            display: inline-flex;
         }
 
         .cta-button {
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
             padding: 1.3rem 2.8rem;
             font-size: 1.2rem;
             font-weight: 600;
@@ -188,6 +197,15 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.2);
             letter-spacing: -0.01em;
             animation: fadeInUp 1s ease-out 1s both;
+            white-space: nowrap;
+            min-width: 280px;
+            font-family: inherit;
+            line-height: 1;
+        }
+
+        /* Ensure button and a tags have same styling */
+        button.cta-button {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         }
 
         .cta-button:hover {
@@ -229,6 +247,68 @@
 
         .cta-button.secondary {
             background: rgba(255,255,255,0.9);
+        }
+
+        /* Mac dropdown */
+        .mac-dropdown {
+            position: absolute;
+            top: calc(100% + 0.5rem);
+            left: 50%;
+            transform: translateX(-50%);
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            padding: 0.5rem;
+            min-width: 320px;
+            display: none;
+            z-index: 100;
+        }
+
+        .mac-dropdown.show {
+            display: block;
+            animation: fadeInDown 0.3s ease-out;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateX(-50%) translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(-50%) translateY(0);
+            }
+        }
+
+        .mac-dropdown a {
+            display: block;
+            padding: 1rem 1.5rem;
+            color: #667eea;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.2s;
+            font-weight: 500;
+            font-size: 1rem;
+            white-space: nowrap;
+        }
+
+        .mac-dropdown a:hover {
+            background: #f0f4ff;
+        }
+
+        .mac-dropdown a.recommended-option {
+            background: #f0f4ff;
+            font-weight: 600;
+        }
+
+        .dropdown-arrow {
+            display: inline-block;
+            margin-left: 0.3rem;
+            transition: transform 0.3s;
+        }
+
+        .download-group.active .dropdown-arrow {
+            transform: rotate(180deg);
         }
 
         .hero-meta {
@@ -413,12 +493,12 @@
         }
 
         .before li::before {
-            content: "‚ù?;
+            content: "&#10060;";
             flex-shrink: 0;
         }
 
         .after li::before {
-            content: "‚ú?;
+            content: "&#9989;";
             flex-shrink: 0;
         }
 
@@ -646,11 +726,32 @@
             .cta-button {
                 padding: 1rem 2rem;
                 font-size: 1.1rem;
+                min-width: 240px;
             }
 
             .hero-meta {
                 flex-direction: column;
                 gap: 0.5rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .download-group {
+                width: 100%;
+            }
+
+            .mac-dropdown {
+                min-width: 280px;
+                left: 50%;
+                transform: translateX(-50%);
+            }
+
+            .mac-dropdown a {
+                padding: 0.9rem 1.2rem;
+                font-size: 0.95rem;
             }
         }
     </style>
@@ -665,7 +766,7 @@
             <h2 class="gradient-text" style="font-size: 2.5rem; margin: 2rem 0;">MyOpenClaw Makes It Easy.</h2>
             
             <div class="power-box">
-                <h3>ü¶û Full OpenClaw Power<br>‚ú?Zero Technical Hassle</h3>
+                <h3>ü¶û Full OpenClaw Power<br>&#10024; Zero Technical Hassle</h3>
                 <p>
                     Same features. Same capabilities. Same OpenClaw.<br>
                     Just easier to get started.
@@ -673,18 +774,34 @@
             </div>
 
             <div class="cta-buttons">
-                <a href="#download-mac" class="cta-button">
-                    üçé Download for Mac
-                </a>
-                <a href="#download-windows" class="cta-button secondary">
-                    ü™ü Download for Windows
-                </a>
+                <!-- Mac Download with Dropdown -->
+                <div class="download-group" id="mac-download-group">
+                    <button class="cta-button" id="mac-download-btn" type="button">
+                        &#127822; Download for Mac
+                        <span class="dropdown-arrow">&#9660;</span>
+                    </button>
+                    <div class="mac-dropdown" id="mac-dropdown">
+                        <a href="https://github.com/yourusername/myopenclaw/releases/download/v1.0.0/MyOpenClaw-Mac-arm64.dmg" class="recommended-option">
+                            Apple Silicon (M1/M2/M3) <span class="recommended-badge">Recommended</span>
+                        </a>
+                        <a href="https://github.com/yourusername/myopenclaw/releases/download/v1.0.0/MyOpenClaw-Mac-x64.dmg">
+                            Intel (x64)
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Windows Download -->
+                <div class="download-group">
+                    <a href="https://github.com/yourusername/myopenclaw/releases/download/v1.0.0/MyOpenClaw-Windows-x64.exe" class="cta-button secondary">
+                        &#129695; Download for Windows
+                    </a>
+                </div>
             </div>
 
             <div class="hero-meta">
-                <span>‚ú?No credit card required</span>
-                <span>‚ú?No technical skills needed</span>
-                <span>‚ú?5 minutes to start</span>
+                <span>&#9989; No credit card required</span>
+                <span>&#9989; No technical skills needed</span>
+                <span>&#9989; 5 minutes to start</span>
             </div>
         </div>
     </section>
@@ -727,13 +844,13 @@
                 </div>
                 
                 <div class="power-item">
-                    <div class="icon">üöÄ</div>
+                    <div class="icon">&#128640;</div>
                     <h3>Full Power</h3>
                     <p>WhatsApp, Telegram, Discord, Slack. All integrations included.</p>
                 </div>
                 
                 <div class="power-item">
-                    <div class="icon">‚ú?/div>
+                    <div class="icon">&#10024;</div>
                     <h3>Better UX</h3>
                     <p>Visual installer, chat interface. Same power, easier access.</p>
                 </div>
@@ -747,7 +864,7 @@
         
         <div class="comparison">
             <div class="comparison-item before">
-                <h3>‚ù?Traditional Setup</h3>
+                <h3>&#10060; Traditional Setup</h3>
                 <ul>
                     <li>2 hours of npm errors</li>
                     <li>"Command not found"</li>
@@ -758,7 +875,7 @@
             </div>
 
             <div class="comparison-item after">
-                <h3>‚ú?With MyOpenClaw</h3>
+                <h3>&#9989; With MyOpenClaw</h3>
                 <ul>
                     <li>5 minutes to start</li>
                     <li>One-click installer</li>
@@ -777,37 +894,37 @@
             
             <div class="features-grid">
                 <div class="feature-card">
-                    <div class="feature-icon">üöÄ</div>
+                    <div class="feature-icon">&#128640;</div>
                     <h3>Visual Installer</h3>
                     <p>No CLI, no npm, no config files. Just click "Install" and wait 5 minutes. That's it.</p>
                 </div>
 
                 <div class="feature-card">
-                    <div class="feature-icon">üí¨</div>
+                    <div class="feature-icon">&#128172;</div>
                     <h3>Beautiful Chat Interface</h3>
                     <p>Talk to OpenClaw like you talk to ChatGPT. Clean, simple, familiar.</p>
                 </div>
 
                 <div class="feature-card">
-                    <div class="feature-icon">üéØ</div>
+                    <div class="feature-icon">&#127919;</div>
                     <h3>Smart Detection</h3>
                     <p>Already installed OpenClaw? MyOpenClaw detects it and skips the setup. Just works.</p>
                 </div>
 
                 <div class="feature-card">
-                    <div class="feature-icon">üîí</div>
+                    <div class="feature-icon">&#128274;</div>
                     <h3>100% Local</h3>
                     <p>Your data stays on your computer. No cloud, no tracking, no privacy concerns.</p>
                 </div>
 
                 <div class="feature-card">
-                    <div class="feature-icon">üÜì</div>
+                    <div class="feature-icon">&#127344;</div>
                     <h3>Free Forever</h3>
                     <p>Core features are completely free. Optional Premium for power users.</p>
                 </div>
 
                 <div class="feature-card">
-                    <div class="feature-icon">üíª</div>
+                    <div class="feature-icon">&#128187;</div>
                     <h3>Windows & Mac</h3>
                     <p>Works on Windows 10/11 and macOS. Linux coming soon.</p>
                 </div>
@@ -848,7 +965,7 @@
             
             <!-- Mac Downloads -->
             <div class="download-group" id="download-mac">
-                <h3 style="font-size: 1.8rem; margin-bottom: 1.5rem; font-weight: 700;">üçé Download for Mac</h3>
+                <h3 style="font-size: 1.8rem; margin-bottom: 1.5rem; font-weight: 700;">&#127822; Download for Mac</h3>
                 <div class="cta-buttons">
                     <a href="https://github.com/yourusername/myopenclaw/releases/latest/download/MyOpenClaw-Mac-arm64.dmg" class="cta-button">
                         Apple Silicon (M1/M2/M3/M4)
@@ -858,15 +975,15 @@
                     </a>
                 </div>
                 <p class="help-text" style="margin-top: 1rem; font-size: 0.95rem; opacity: 0.85;">
-                    Not sure which one? Check  ‚Ü?About This Mac ‚Ü?Chip
+                    Not sure which one? Check  &rarr; About This Mac &rarr; Chip
                 </p>
             </div>
             
             <!-- Windows Downloads -->
             <div class="download-group" id="download-windows" style="margin-top: 3rem;">
-                <h3 style="font-size: 1.8rem; margin-bottom: 1.5rem; font-weight: 700;">ü™ü Download for Windows</h3>
+                <h3 style="font-size: 1.8rem; margin-bottom: 1.5rem; font-weight: 700;">&#129695; Download for Windows</h3>
                 <div class="cta-buttons">
-                    <a href="https://github.com/nadenewinborneial24-ship-it/myopenclaw-homepage/releases/download/v0.1.0/MyOpenClaw-0.1.0-simple-win-x64.exe" class="cta-button">
+                    <a href="https://github.com/yourusername/myopenclaw/releases/latest/download/MyOpenClaw-Windows-x64.exe" class="cta-button">
                         Windows 10/11 (64-bit)
                     </a>
                 </div>
@@ -876,9 +993,9 @@
             </div>
             
             <div class="hero-meta" style="margin-top: 3rem;">
-                <span>‚ú?Free forever</span>
-                <span>‚ú?No signup required</span>
-                <span>‚ú?~100MB download</span>
+                <span>&#9989; Free forever</span>
+                <span>&#9989; No signup required</span>
+                <span>&#9989; ~100MB download</span>
             </div>
         </div>
     </section>
@@ -1043,7 +1160,42 @@
                 }
             }
         }
+
+        // Mac dropdown toggle
+        const macDownloadBtn = document.getElementById('mac-download-btn');
+        const macDropdown = document.getElementById('mac-dropdown');
+        const macDownloadGroup = document.getElementById('mac-download-group');
+
+        if (macDownloadBtn && macDropdown) {
+            macDownloadBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                macDropdown.classList.toggle('show');
+                macDownloadGroup.classList.toggle('active');
+            });
+
+            // Close dropdown when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!macDownloadGroup.contains(e.target)) {
+                    macDropdown.classList.remove('show');
+                    macDownloadGroup.classList.remove('active');
+                }
+            });
+
+            // Auto-select based on platform
+            const isMac = navigator.platform.toUpperCase().indexOf('MAC') >= 0;
+            const isAppleSilicon = navigator.userAgent.indexOf('Mac OS X') > -1 && 
+                                   (navigator.userAgent.indexOf('ARM') > -1 || 
+                                    navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+            
+            if (isMac) {
+                // Add recommended badge to Mac button
+                const badge = document.createElement('span');
+                badge.className = 'recommended-badge';
+                badge.textContent = 'Recommended';
+                macDownloadBtn.appendChild(badge);
+                macDownloadBtn.classList.add('recommended');
+            }
+        }
     </script>
 </body>
 </html>
-
